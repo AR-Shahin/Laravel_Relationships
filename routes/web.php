@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OneToOneController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -17,3 +18,5 @@ require __DIR__ . '/auth.php';
 Route::view('class', 'testing.class', [
     'isActive' => true,
 ]);
+
+Route::get('one-to-one', [OneToOneController::class, 'oneToOne']);

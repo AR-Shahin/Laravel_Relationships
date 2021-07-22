@@ -11,6 +11,8 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    // dynamic load
+    // protected $with = ['profile', 'posts'];
     /**
      * The attributes that are mass assignable.
      *
@@ -40,4 +42,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    function profile()
+    {
+        return $this->hasOne(Profile::class)->withDefault([
+            'country' => 'USA'
+        ]);
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
