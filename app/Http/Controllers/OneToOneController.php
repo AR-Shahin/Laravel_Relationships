@@ -34,6 +34,7 @@ class OneToOneController extends Controller
         //     'country' => 'BD',
         //     'city' => 'ch',
         // ]);
+
         $users = User::get();
 
         // lazy load

@@ -55,4 +55,18 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+    /**
+     *  get last and first data
+     */
+    public function latestPost()
+    {
+        // return $this->hasOne(Post::class)->ofMany('view', 'min');
+        return $this->hasOne(Post::class)->latestOfMany();
+    }
+
+    public function oldestPost()
+    {
+        return $this->hasOne(Post::class)->oldestOfMany();
+    }
 }
