@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\OneToOneController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OneToOneController;
+use App\Http\Controllers\OneToManyController;
 
 
 
@@ -20,3 +21,5 @@ Route::view('class', 'testing.class', [
 ]);
 
 Route::get('one-to-one', [OneToOneController::class, 'oneToOne']);
+
+Route::get('one-to-many', [OneToManyController::class, 'oneToMany']);
