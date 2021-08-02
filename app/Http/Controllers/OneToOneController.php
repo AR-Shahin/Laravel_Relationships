@@ -9,6 +9,7 @@ class OneToOneController extends Controller
 {
     function oneToOne()
     {
+        User::get();
         # withOnly(['profile', 'posts'])->
         # without('profile')->
 
