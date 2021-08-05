@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\City;
 use Illuminate\Console\Command;
 
 class TestCommand extends Command
@@ -37,6 +38,8 @@ class TestCommand extends Command
      */
     public function handle()
     {
+        City::where('people', '>',  300)->delete();
+        $this->info('Delete!');
         return 0;
     }
 }

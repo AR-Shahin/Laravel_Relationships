@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\SendNotVerifiedEmailCommand;
+use App\Console\Commands\TestCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -14,7 +15,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        SendNotVerifiedEmailCommand::class
+        SendNotVerifiedEmailCommand::class,
+        TestCommand::class
     ];
 
     /**
@@ -28,7 +30,9 @@ class Kernel extends ConsoleKernel
         // $schedule->call(function () {
         //     info('Task Scheduling!');
         // })->everyMinute();
-        $schedule->command('send:mail')->everyMinute()->withoutOverlapping();
+        // $schedule->command('send:mail')->everyMinute()->withoutOverlapping();
+        // })->everyMinute();
+        $schedule->command('test')->everyMinute()->withoutOverlapping();
     }
 
     /**

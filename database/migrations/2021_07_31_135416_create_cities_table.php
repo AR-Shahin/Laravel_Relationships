@@ -18,6 +18,7 @@ class CreateCitiesTable extends Migration
             $table->id();
             $table->foreignId('profile_id')->constrained('profiles')->onDelete('cascade');
             $table->string('name')->default(Str::random(5));
+            $table->integer('people')->nullable();
             $table->timestamps();
         });
     }

@@ -1,15 +1,16 @@
 <?php
 
+use App\Models\City;
+use App\Models\User;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Mail\SendUnVerifiedEmail;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OneToOneController;
 use App\Http\Controllers\OneToManyController;
 use App\Http\Controllers\ManyToManyController;
-use App\Mail\SendUnVerifiedEmail;
-use App\Models\User;
-use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
     return view('welcome');
@@ -53,9 +54,11 @@ Route::post('category', function (Request $request) {
 Route::get('many-to-many', [ManyToManyController::class, 'index']);
 
 Route::get('/mail', function () {
-    $users = User::whereIsVerified(0)->get();
-    foreach ($users as $user => $index) {
-        info($index + 1 . 'Mail has sent!');
-        Mail::to($user->email)->send(new SendUnVerifiedEmail($user));
-    }
+    // $users = User::whereIsVerified(0)->get();
+    // foreach ($users as $user => $index) {
+    //     info($index + 1 . 'Mail has sent!');
+    //     Mail::to($user->email)->send(new SendUnVerifiedEmail($user));
+    // }
+
+    return  City::where('people', '<',  300)->get();
 });
