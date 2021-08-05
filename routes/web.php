@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OneToOneController;
 use App\Http\Controllers\OneToManyController;
+use App\Http\Controllers\ManyToManyController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -44,3 +45,6 @@ Route::post('category', function (Request $request) {
     Category::create($request->all());
     return back();
 })->name('category');
+
+
+Route::get('many-to-many', [ManyToManyController::class, 'index']);
