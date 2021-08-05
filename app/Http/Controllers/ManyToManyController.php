@@ -38,7 +38,7 @@ class ManyToManyController extends Controller
         // return User::find(5)->skills()->sync([5 => ['rate' => 159], 2, 1 => ['rate' => 963]]);
 
         # Toggle -> jeta thake na oita add kore baki ghula delete kore and new add kore na
-        return User::find(5)->skills()->toggle([1, 3, 5]);
+        // return User::find(5)->skills()->toggle([1, 3, 5]);
 
 
         $users = User::has('skills')->with('skills')->get();
