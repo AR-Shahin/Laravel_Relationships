@@ -13,4 +13,9 @@ class Product extends Model
     {
         return $this->morphMany(Review::class, 'reviewable');
     }
+
+    public function keywords()
+    {
+        return $this->morphToMany(Keyword::class, 'keywordable');
+    }
 }

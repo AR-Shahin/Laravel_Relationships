@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OneToOneController;
 use App\Http\Controllers\OneToManyController;
 use App\Http\Controllers\ManyToManyController;
+use App\Http\Controllers\ManyToManyMorphController;
 use App\Http\Controllers\OneToManyPolyController;
 
 Route::get('/', function () {
@@ -66,3 +67,5 @@ Route::get('/mail', function () {
 
 
 Route::get('poly-one-to-many', [OneToManyPolyController::class, 'oneToManyPolymorphic']);
+
+Route::get('poly-many-to-many', [ManyToManyMorphController::class, 'index']);

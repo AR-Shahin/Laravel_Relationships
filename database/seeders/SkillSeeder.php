@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Keyword;
 use App\Models\Skill;
 use Illuminate\Database\Seeder;
 
@@ -17,6 +18,9 @@ class SkillSeeder extends Seeder
         $skills = ['WEB', 'GRAPHIC', 'VIDEO', 'CODE', 'ART'];
         for ($i = 0; $i < count($skills); $i++) {
             Skill::create([
+                'name' => $skills[$i]
+            ]);
+            Keyword::create([
                 'name' => $skills[$i]
             ]);
         }
