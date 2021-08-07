@@ -15,7 +15,7 @@ class ManyToManyMorphController extends Controller
         //Product::find(1)->keywords()->attach([1, 2, 3]);
 
         #
-        return 
+ 
         return view('many-to-many.morph');
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\CheckAge;
 use App\Models\City;
 use App\Models\User;
 use App\Models\Category;
@@ -14,9 +15,23 @@ use App\Http\Controllers\ManyToManyController;
 use App\Http\Controllers\ManyToManyMorphController;
 use App\Http\Controllers\OneToManyPolyController;
 
+
 Route::get('/', function () {
+
     return view('welcome');
 });
+
+Route::get('service', function (CheckAge $ca) {
+    // app()->bind('Shahin', function () {
+    //     return 'ARS';
+    // });
+    // dd(app());
+
+    $ca->provideBirthYear(2000);
+    dd($ca->getAge());
+    // dd(resolve('CheckAge'));
+});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
