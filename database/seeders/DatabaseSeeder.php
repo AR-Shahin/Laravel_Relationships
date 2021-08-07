@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\City;
+use App\Models\Product;
+use App\Models\Review;
 use Database\Factories\CityFactory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\App;
@@ -25,5 +27,7 @@ class DatabaseSeeder extends Seeder
             SkillSeeder::class
         ]);
         City::factory(15)->create();
+        Product::factory(10)->create();
+        Review::factory(20)->create();
     }
 }

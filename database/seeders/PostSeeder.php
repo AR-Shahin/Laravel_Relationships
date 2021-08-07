@@ -15,7 +15,7 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 50; $i++) {
+        for ($i = 1; $i <= 10; $i++) {
             Post::create([
                 'user_id' => rand(1, 10),
                 'title' => Str::random(),

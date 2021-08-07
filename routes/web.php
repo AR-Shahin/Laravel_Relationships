@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OneToOneController;
 use App\Http\Controllers\OneToManyController;
 use App\Http\Controllers\ManyToManyController;
+use App\Http\Controllers\OneToManyPolyController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -62,3 +63,6 @@ Route::get('/mail', function () {
 
     return  City::where('people', '<',  300)->get();
 });
+
+
+Route::get('poly-one-to-many', [OneToManyPolyController::class, 'oneToManyPolymorphic']);
