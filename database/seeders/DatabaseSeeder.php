@@ -18,16 +18,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
+        // \App\Models\User::factory(10)->create();
 
-        $this->call([
-            ProfileSeeder::class,
-            PostSeeder::class,
-            CommentSeeder::class,
-            SkillSeeder::class
-        ]);
-        City::factory(15)->create();
-        Product::factory(10)->create();
-        Review::factory(20)->create();
+        // $this->call([
+        //     ProfileSeeder::class,
+        //     PostSeeder::class,
+        //     CommentSeeder::class,
+        //     SkillSeeder::class
+        // ]);
+        // City::factory(15)->create();
+        // Product::factory(10)->create();
+        // Review::factory(20)->create();
     }
 }

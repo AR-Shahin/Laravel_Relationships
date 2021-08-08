@@ -34,7 +34,8 @@
                 </div>
             @endif
             <hr>
-
+            <a href="{{ route('admin.login') }}" class="text-sm text-gray-700 underline">Admin Log in</a>
+            <a href="{{ route('admin.register') }}" class="ml-4 text-sm text-gray-700 underline">Admin Register</a>
         </div>
     </body>
 </html>
