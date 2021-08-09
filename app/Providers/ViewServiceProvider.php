@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
-use App\Http\View\Composers\CityComposer;
 use App\Models\City;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use App\Http\View\Composers\CityComposer;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -36,5 +37,17 @@ class ViewServiceProvider extends ServiceProvider
 
         # Option 3
         View::composer(['welcome', 'view.*'], CityComposer::class);
+
+        Blade::directive('datetime', function ($expression) {
+            return "<?php echo ($expression)->format('m/d/Y'); ?>";
+        });
+        Blade::directive('ars', function ($expression) {
+
+            return "<?php echo strtoupper($expression)?>";
+        });
+        Blade::directive('route', function ($expression) {
+            //dd($expression);
+            return "<?php echo route($expression); ?>";
+        });
     }
 }

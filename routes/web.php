@@ -92,3 +92,7 @@ Route::get('view', function () {
     $test = 'shahin';
     return view('view.view', compact('test'))->with('arr', [10, 20, 30]);
 });
+
+Route::get('user/{user}', function (User $user) {
+    return $user;
+})->name('user');

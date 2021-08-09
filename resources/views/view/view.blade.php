@@ -12,5 +12,10 @@
 {{ $test }}
 {{-- {{ $globalValue }} --}}
 {{ $globalCity }}
+<a href="@route('user',['user' => 5])">al</a>
+@ars('and')
+@datetime(now())
+<br>
+@ars('shahin')
 </body>
 </html>
