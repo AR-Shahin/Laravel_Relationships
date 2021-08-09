@@ -15,4 +15,5 @@
     @endforeach
 
     </div>
+    {{-- {{ $globalCity }} --}}
 </x-guest-layout>

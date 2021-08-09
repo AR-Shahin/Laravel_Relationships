@@ -14,7 +14,7 @@ use App\Http\Controllers\OneToManyController;
 use App\Http\Controllers\ManyToManyController;
 use App\Http\Controllers\ManyToManyMorphController;
 use App\Http\Controllers\OneToManyPolyController;
-
+use Illuminate\Support\Facades\View;
 
 Route::get('/', function () {
 
@@ -76,7 +76,6 @@ Route::get('/mail', function () {
     //     info($index + 1 . 'Mail has sent!');
     //     Mail::to($user->email)->send(new SendUnVerifiedEmail($user));
     // }
-
     return  City::where('people', '<',  300)->get();
 });
 
@@ -84,3 +83,12 @@ Route::get('/mail', function () {
 Route::get('poly-one-to-many', [OneToManyPolyController::class, 'oneToManyPolymorphic']);
 
 Route::get('poly-many-to-many', [ManyToManyMorphController::class, 'index']);
+
+# View
+Route::get('view', function () {
+    //return view('view.test');
+    // return View::make('welcome');
+
+    $test = 'shahin';
+    return view('view.view', compact('test'))->with('arr', [10, 20, 30]);
+});
