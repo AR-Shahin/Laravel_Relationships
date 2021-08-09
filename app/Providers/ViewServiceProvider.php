@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use App\Http\View\Composers\CityComposer;
+use App\View\Components\User\UserComponent;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -49,5 +50,8 @@ class ViewServiceProvider extends ServiceProvider
             //dd($expression);
             return "<?php echo route($expression); ?>";
         });
+
+        # Component
+        // Blade::component('my-custom-user', UserComponent::class);
     }
 }

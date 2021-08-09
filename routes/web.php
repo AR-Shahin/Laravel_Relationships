@@ -96,3 +96,11 @@ Route::get('view', function () {
 Route::get('user/{user}', function (User $user) {
     return $user;
 })->name('user');
+
+
+# Component
+
+Route::get('component', function () {
+    $users = User::take(5)->get();
+    return view('component', compact('users'));
+});
