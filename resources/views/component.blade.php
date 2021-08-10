@@ -29,5 +29,9 @@
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, consectetur!
         </x-slot>
     </x-alert.notification> --}}
+
+    <!-- inline -->
+    <x-test class="container text-white" id="5" type="danger" message="hello"/>
+    <x-test class="mt-2" style="color: teal" type="info"/>
 </body>
 </html>
