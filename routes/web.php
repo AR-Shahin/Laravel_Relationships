@@ -14,6 +14,7 @@ use App\Http\Controllers\OneToManyController;
 use App\Http\Controllers\ManyToManyController;
 use App\Http\Controllers\ManyToManyMorphController;
 use App\Http\Controllers\OneToManyPolyController;
+use App\Http\Controllers\ValidationController;
 use Illuminate\Support\Facades\View;
 
 Route::get('/', function () {
@@ -104,3 +105,8 @@ Route::get('component', function () {
     $users = User::take(5)->get();
     return view('component', compact('users'));
 });
+
+# Validation
+
+Route::get('validation', [ValidationController::class, 'create']);
+Route::post('validation', [ValidationController::class, 'store']);
