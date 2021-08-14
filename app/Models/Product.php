@@ -9,6 +9,10 @@ class Product extends Model
 {
     use HasFactory;
 
+    function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     public function reviews()
     {
         return $this->morphMany(Review::class, 'reviewable');

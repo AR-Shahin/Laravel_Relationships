@@ -9,7 +9,8 @@ class OneToOneController extends Controller
 {
     function oneToOne()
     {
-        User::get();
+
+        //  return User::get()->count();
         # withOnly(['profile', 'posts'])->
         # without('profile')->
 
@@ -19,9 +20,10 @@ class OneToOneController extends Controller
         // })->get();
 
         // get all user where post code is not null
-        // return User::with('profile')->whereHas('profile', function ($q) {
-        //     $q->whereNotNull('post_code');
-        // })->get();
+        return User::with('profile')->whereHas('profile', function ($q) {
+            // $q->whereNotNull('post_code');
+            $q->wherePostCode(1357);
+        })->get()->count();
 
         // get all user where doesn't have profile
         // return User::doesntHave('profile')->get();
