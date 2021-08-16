@@ -14,6 +14,7 @@ use App\Http\Controllers\OneToManyController;
 use App\Http\Controllers\ManyToManyController;
 use App\Http\Controllers\ManyToManyMorphController;
 use App\Http\Controllers\OneToManyPolyController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ValidationController;
 use Illuminate\Support\Facades\View;
 
@@ -22,16 +23,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('service', function (CheckAge $ca) {
-    // app()->bind('Shahin', function () {
-    //     return 'ARS';
-    // });
-    // dd(app());
+// Route::get('service', function (CheckAge $ca) {
+//     // app()->bind('Shahin', function () {
+//     //     return 'ARS';
+//     // });
+//     // dd(app());
 
-    $ca->provideBirthYear(2000);
-    dd($ca->getAge());
-    // dd(resolve('CheckAge'));
-});
+//     $ca->provideBirthYear(2000);
+//     dd($ca->getAge());
+//     // dd(resolve('CheckAge'));
+// });
 
 
 Route::get('/dashboard', function () {
@@ -40,82 +41,89 @@ Route::get('/dashboard', function () {
 
 require __DIR__ . '/auth.php';
 
-Route::view('class', 'testing.class', [
-    'isActive' => true,
-]);
+// Route::view('class', 'testing.class', [
+//     'isActive' => true,
+// ]);
 
-Route::get('one-to-one', [OneToOneController::class, 'oneToOne']);
+// Route::get('one-to-one', [OneToOneController::class, 'oneToOne']);
 
-Route::get('one-to-many', [OneToManyController::class, 'oneToMany']);
-
-
-Route::get('has', function () {
-
-    $data = [];
-    return view('has.index', compact('data'));
-});
+// Route::get('one-to-many', [OneToManyController::class, 'oneToMany']);
 
 
+// Route::get('has', function () {
 
-Route::get('category', function () {
-    $categories = Category::get();
-    $parent_category = Category::whereHas('children')->with('children')->get();
-    return view('category.index', compact('categories', 'parent_category'));
-});
-
-Route::post('category', function (Request $request) {
-    Category::create($request->all());
-    return back();
-})->name('category');
+//     $data = [];
+//     return view('has.index', compact('data'));
+// });
 
 
-Route::get('many-to-many', [ManyToManyController::class, 'index']);
 
-Route::get('/mail', function () {
-    // $users = User::whereIsVerified(0)->get();
-    // foreach ($users as $user => $index) {
-    //     info($index + 1 . 'Mail has sent!');
-    //     Mail::to($user->email)->send(new SendUnVerifiedEmail($user));
-    // }
-    return  City::where('people', '<',  300)->get();
-});
+// Route::get('category', function () {
+//     $categories = Category::get();
+//     $parent_category = Category::whereHas('children')->with('children')->get();
+//     return view('category.index', compact('categories', 'parent_category'));
+// });
 
-
-Route::get('poly-one-to-many', [OneToManyPolyController::class, 'oneToManyPolymorphic']);
-
-Route::get('poly-many-to-many', [ManyToManyMorphController::class, 'index']);
-
-# View
-Route::get('view', function () {
-    //return view('view.test');
-    // return View::make('welcome');
-
-    $test = 'shahin';
-    return view('view.view', compact('test'))->with('arr', [10, 20, 30]);
-});
-
-Route::get('user/{user}', function (User $user) {
-    return $user;
-})->name('user');
+// Route::post('category', function (Request $request) {
+//     Category::create($request->all());
+//     return back();
+// })->name('category');
 
 
-# Component
+// Route::get('many-to-many', [ManyToManyController::class, 'index']);
 
-Route::get('component', function () {
-    $users = User::take(5)->get();
-    return view('component', compact('users'));
-});
+// Route::get('/mail', function () {
+//     // $users = User::whereIsVerified(0)->get();
+//     // foreach ($users as $user => $index) {
+//     //     info($index + 1 . 'Mail has sent!');
+//     //     Mail::to($user->email)->send(new SendUnVerifiedEmail($user));
+//     // }
+//     return  City::where('people', '<',  300)->get();
+// });
 
-# Validation
 
-Route::get('validation', [ValidationController::class, 'create']);
-Route::post('validation', [ValidationController::class, 'store']);
+// Route::get('poly-one-to-many', [OneToManyPolyController::class, 'oneToManyPolymorphic']);
+
+// Route::get('poly-many-to-many', [ManyToManyMorphController::class, 'index']);
+
+// # View
+// Route::get('view', function () {
+//     //return view('view.test');
+//     // return View::make('welcome');
+
+//     $test = 'shahin';
+//     return view('view.view', compact('test'))->with('arr', [10, 20, 30]);
+// });
+
+// Route::get('user/{user}', function (User $user) {
+//     return $user;
+// })->name('user');
 
 
-Route::get('user', function () {
+// # Component
 
-    $user = User::all()->toArray();
-    var_dump($user);
-    //  return $user->makeVisible('email')->toArray();
-    //return $user->makeHidden('name')->toArray();
-});
+// Route::get('component', function () {
+//     $users = User::take(5)->get();
+//     return view('component', compact('users'));
+// });
+
+// # Validation
+
+// Route::get('validation', [ValidationController::class, 'create']);
+// Route::post('validation', [ValidationController::class, 'store']);
+
+
+// Route::get('user', function () {
+
+//     $user = User::all()->toArray();
+//     var_dump($user);
+//     //  return $user->makeVisible('email')->toArray();
+//     //return $user->makeHidden('name')->toArray();
+// });
+
+
+# Post Routes
+
+Route::resource('post', PostController::class)->middleware(['auth']);
+
+Route::get('fuck', fn () => 'Protected!')->middleware('can:isAdmin')->name('fuck');
