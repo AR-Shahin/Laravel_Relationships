@@ -1,9 +1,9 @@
-@props(['type', 'message' => 'default'])
+{{-- @props(['type', 'message' => 'default', 'abs']) --}}
 <div {{ $attributes->merge(['class' => "bg-{$type}"]) }}>
     {{-- @php
           dd($attributes )
     @endphp --}}
-{{-- {{ $type }} --}}
+{{ $type }}
 
-    {{ $message }}
+    {{ $abs }}
 </div>

@@ -11,9 +11,9 @@ use App\Http\Resources\Product\ProductResources;
 use App\Http\Resources\Product\ProductCollection;
 use App\Http\Resources\User\UserResource;
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 
 Route::get('products', function () {

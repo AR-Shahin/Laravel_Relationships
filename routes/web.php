@@ -110,3 +110,12 @@ Route::get('component', function () {
 
 Route::get('validation', [ValidationController::class, 'create']);
 Route::post('validation', [ValidationController::class, 'store']);
+
+
+Route::get('user', function () {
+
+    $user = User::all()->toArray();
+    var_dump($user);
+    //  return $user->makeVisible('email')->toArray();
+    //return $user->makeHidden('name')->toArray();
+});

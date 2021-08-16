@@ -31,7 +31,7 @@
     </x-alert.notification> --}}
 
     <!-- inline -->
-    <x-test class="container text-white" id="5" type="danger" message="hello"/>
-    <x-test class="mt-2" style="color: teal" type="info"/>
+    {{-- <x-test class="container text-white" id="5" type="danger" message="hello"/> --}}
+    <x-test class="mt-2" style="color: teal" abs="963" type="info"/>
 </body>
 </html>
