@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
             'role' => 'visitor'
         ]);
-        \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(5)->create();
 
         $this->call([
             ProfileSeeder::class,

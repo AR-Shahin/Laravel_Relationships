@@ -17,7 +17,7 @@ class CommentSeeder extends Seeder
     {
         for ($i = 1; $i <= 150; $i++) {
             Comment::create([
-                'user_id' => rand(1, 10),
+                'user_id' => rand(1, 5),
                 'post_id' => rand(1, 50),
                 'title' => Str::random(),
                 'status' => ($i % 5 || $i % 3) == 0 ? true : false,

@@ -16,7 +16,7 @@ class ProfileSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 5; $i++) {
             Profile::create([
                 'user_id' => $i,
                 'country' => ucwords(Str::random(5)),

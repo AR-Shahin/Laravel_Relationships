@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Notifications\AdminResetPasswordNotifiaion;
+use App\Notifications\AdminEmailVerifyNotification;
 use App\Notifications\AdminResetPasswordNotification;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-class Admin extends Authenticatable
+class Admin extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
@@ -49,5 +49,10 @@ class Admin extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new AdminResetPasswordNotification($token));
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new AdminEmailVerifyNotification);
     }
 }
