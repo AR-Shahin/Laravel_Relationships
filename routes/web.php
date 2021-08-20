@@ -8,15 +8,17 @@ use Illuminate\Http\Request;
 use App\Mail\SendUnVerifiedEmail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\OneToOneController;
 use App\Http\Controllers\OneToManyController;
 use App\Http\Controllers\ManyToManyController;
-use App\Http\Controllers\ManyToManyMorphController;
-use App\Http\Controllers\OneToManyPolyController;
-use App\Http\Controllers\PostController;
 use App\Http\Controllers\ValidationController;
-use Illuminate\Support\Facades\View;
+use App\Http\Controllers\OneToManyPolyController;
+use App\Http\Controllers\ManyToManyMorphController;
+use App\Models\Product;
 
 Route::get('/', function () {
 
@@ -34,9 +36,55 @@ Route::get('/', function () {
 //     // dd(resolve('CheckAge'));
 // });
 
+# Cache
+Route::get('cache', function () {
+    // if (cache()->has('products')) {
+    //     return cache('products');
+    // }
+    // return 'nai';
+    // return Product::find(4)->delete();
+    // return  Product::create([
+    //     'user_id' => auth()->id(),
+    //     'title' => 'New Post ' . rand(40, 80),
+    //     'view' => 10,
+    //     'price' => 10,
+    // ]);
+
+    return Product::find(12)->update([
+        'title' => 'Update Post ' . rand(40, 80)
+    ]);
+});
+
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    //return 1;
+    // return cache()->get('s', 'nai');
+    // return  Cache::get('foo', function () {
+    //     return 'nai re';
+    // });
+    //return Cache::forget('products');
+    // $products = Cache::remember('products', now()->addSeconds(5), function () {
+    //     return Product::with('user')->latest()->get();
+    // });
+
+    $products = Cache::rememberForever('products', function () {
+        return Product::with('user')->latest()->get();
+    });
+
+    // if (cache()->has('products')) {
+    //     return cache()->get('products');
+    // } else {
+    //     return 'nai';
+    // }
+    // $products =  cache('products', function () {
+    //     return Product::with('user')->get();
+    // });
+
+    // $products = Cache::remember('products', 15, function () {
+    //     return Product::get();
+    // });
+
+    return view('dashboard', compact('products'));
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
