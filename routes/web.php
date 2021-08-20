@@ -55,6 +55,11 @@ Route::get('cache', function () {
     ]);
 });
 
+Route::get('response-cache', function () {
+
+    $products = Product::with('user')->latest()->get();
+    return view('cache', compact('products'));
+})->middleware(['auth', 'cache_response:10']);
 
 Route::get('/dashboard', function () {
     //return 1;
@@ -172,6 +177,6 @@ require __DIR__ . '/auth.php';
 
 # Post Routes
 
-Route::resource('post', PostController::class)->middleware(['auth']);
+Route::resource('post', PostController::class)->middleware(['auth', 'cache_response']);
 
 Route::get('fuck', fn () => 'Protected!')->middleware('can:isAdmin')->name('fuck');

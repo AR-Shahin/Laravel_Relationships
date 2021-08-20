@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\CheckAge;
+use App\Http\Middleware\CacheResponseMiddleware;
 use App\Models\City;
 use App\Models\Product;
 use App\Observers\ProductOvserver;
@@ -36,5 +37,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Product::observe(ProductOvserver::class);
+
+        $this->app->singleton(CacheResponseMiddleware::class);
     }
 }
