@@ -3,6 +3,8 @@
 use App\CheckAge;
 use App\Models\City;
 use App\Models\User;
+use App\Mail\AdminMail;
+use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Mail\SendUnVerifiedEmail;
@@ -18,7 +20,6 @@ use App\Http\Controllers\ManyToManyController;
 use App\Http\Controllers\ValidationController;
 use App\Http\Controllers\OneToManyPolyController;
 use App\Http\Controllers\ManyToManyMorphController;
-use App\Models\Product;
 
 Route::get('/', function () {
 
@@ -125,14 +126,21 @@ require __DIR__ . '/auth.php';
 
 // Route::get('many-to-many', [ManyToManyController::class, 'index']);
 
-// Route::get('/mail', function () {
-//     // $users = User::whereIsVerified(0)->get();
-//     // foreach ($users as $user => $index) {
-//     //     info($index + 1 . 'Mail has sent!');
-//     //     Mail::to($user->email)->send(new SendUnVerifiedEmail($user));
-//     // }
-//     return  City::where('people', '<',  300)->get();
-// });
+Route::get('/mail', function () {
+
+    $data = [10, 20, 'shahin'];
+    Mail::to('a@mail.com')->queue(new AdminMail($data));
+    mail('a@mail.com', 'subject', 'body');
+    // return 1;
+    // $users = User::whereIsVerified(0)->first();
+    // Mail::to($users->email)->send(new SendUnVerifiedEmail($users));
+    // foreach ($users as $user => $index) {
+    //     // info($index + 1 . 'Mail has sent!');
+    //     echo $user->email . '<br>';
+    //     // Mail::to($user->email)->send(new SendUnVerifiedEmail($user));
+    // }
+    // return  City::where('people', '<',  300)->get();
+});
 
 
 // Route::get('poly-one-to-many', [OneToManyPolyController::class, 'oneToManyPolymorphic']);
