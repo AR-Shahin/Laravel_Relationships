@@ -9,11 +9,13 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Mail\SendUnVerifiedEmail;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OneToOneController;
 use App\Http\Controllers\OneToManyController;
 use App\Http\Controllers\ManyToManyController;
@@ -185,6 +187,19 @@ Route::get('/mail', function () {
 
 # Post Routes
 
-Route::resource('post', PostController::class)->middleware(['auth', 'cache_response']);
+Route::resource('post', PostController::class)->middleware(['auth']);
 
 Route::get('fuck', fn () => 'Protected!')->middleware('can:isAdmin')->name('fuck');
+
+
+# Http
+Route::get('http', function () {
+    $get =  Http::get('https://jsonplaceholder.typicode.com/posts/');
+
+    dd($get->headers());
+});
+
+
+#gate and policy
+
+Route::resource('product', ProductController::class)->middleware('auth');
