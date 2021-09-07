@@ -29,7 +29,10 @@
                     <td>{{ $product->title }}</td>
                     <td>{{ $product->user->name }}</td>
                     <td>
+                        @can('isAdmin')
                         <a href="" class="btn btn-sm btn-info">Update</a>
+                        @endcan
+
 
                         @can('delete', $product)
                         <form class="btn btn-sm btn-danger d-inline" action="@route('product.destroy',['product' => $product->id])" method="Post">

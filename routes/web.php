@@ -24,7 +24,7 @@ use App\Http\Controllers\OneToManyPolyController;
 use App\Http\Controllers\ManyToManyMorphController;
 
 Route::get('/', function () {
-
+    // sleep(5);
     return view('welcome');
 });
 
