@@ -17,21 +17,28 @@
                         <table class="table table-bordered">
                             <tr>
                                 <th>SL</th>
-                                <th>Title</th>
-                                <th>User</th>
-                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
                                 <th>Actions</td>
                             </tr>
-                            @foreach ($products as $product)
+                            @foreach ($users as $user)
+                             {{-- @php
+                                 dd($user->role())
+                             @endphp --}}
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $product->title }}</td>
-                                <td>{{ $product->user->name }}</td>
-                                <td>{{ $product->created_at->format('Y-m-d') }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td><span class="font-bold {{ $user->role()->textClass() }}" >{{ $user->email}}</span></td>
+                                <td>
+                                    {{-- <span class="p-1 rounded text-white {{ $user->className() }}">{{ $user->role }}</span> --}}
+                                    <span class="p-1 rounded text-white {{ $user->role()->backgroundClass() }}">{{ $user->role }}</span>
+                                </td>
                                 <td>Actions</td>
                             </tr>
                             @endforeach
                         </table>
+                        {{ $users->links() }}
                        </div>
                     </div>
                 </div>

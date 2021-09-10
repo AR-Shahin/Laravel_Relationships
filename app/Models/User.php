@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enum\UserRoleEnum;
 use App\Models\SkillUser;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -82,5 +83,29 @@ class User extends Authenticatable implements MustVerifyEmail
             ->withTimestamps()
             ->as('my_pivot')
             ->withPivot('rate');
+    }
+
+    public function className(): string
+    {
+        // Old way -- we can use switch statement
+        // if ($this->role === 'admin') {
+        //     return 'bg-green-500';
+        // } else if ($this->role === 'user') {
+        //     return 'bg-red-500';
+        // } else {
+        //     return 'bg-pink-500';
+        // }
+
+        // New way
+        // return [
+        //     'admin' => 'bg-purple-500',
+        //     'user' => 'bg-red-500',
+        //     'visitor' => 'bg-pink-500',
+        // ][$this->role] ?? 'bg-red-100';
+    }
+
+    public function role(): UserRoleEnum
+    {
+        return new UserRoleEnum($this->role);
     }
 }

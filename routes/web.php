@@ -28,6 +28,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/poly', function () {
+    return view('poly', [
+        'users' => User::latest()->paginate(15)
+    ]);
+})->name('poly')->middleware('auth');
 // Route::get('service', function (CheckAge $ca) {
 //     // app()->bind('Shahin', function () {
 //     //     return 'ARS';
